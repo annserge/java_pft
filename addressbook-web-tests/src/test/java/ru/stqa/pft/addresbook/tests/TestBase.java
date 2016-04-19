@@ -1,10 +1,8 @@
 package ru.stqa.pft.addresbook.tests;
 
-import org.openqa.selenium.By;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import ru.stqa.pft.addresbook.appmanager.ApplicationManager;
-import ru.stqa.pft.addresbook.model.ContactData;
 
 /**
  * Created by Anna on 18.04.2016.
