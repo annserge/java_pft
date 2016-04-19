@@ -1,16 +1,17 @@
 package ru.stqa.pft.addresbook.appmanager;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import ru.stqa.pft.addresbook.model.ContactData;
 
 import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Anna on 18.04.2016.
  */
-public class ApplicationManager extends ContactHelper {
+public class ApplicationManager {
 
+  FirefoxDriver wd;
+
+  private ContactHelper contactHelper;
   private NavigationHelper navigationHelper;
   private GroupHelper groupHelper;
   private SessionHelper sessionHelper;
@@ -22,6 +23,7 @@ public class ApplicationManager extends ContactHelper {
 
     groupHelper = new GroupHelper(wd);
     navigationHelper = new NavigationHelper(wd);
+    contactHelper  = new ContactHelper(wd);
     sessionHelper = new SessionHelper(wd);
     sessionHelper.login("admin", "secret");
   }
@@ -39,4 +41,7 @@ public class ApplicationManager extends ContactHelper {
   }
 
 
+  public ContactHelper getContactHelper() {
+    return contactHelper;
+  }
 }
