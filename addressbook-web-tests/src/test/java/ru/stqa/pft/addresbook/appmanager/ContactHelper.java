@@ -28,4 +28,13 @@ public class ContactHelper extends HelperBase {
     type(By.name("email2"), contactData.getMail2());
     type(By.name("email3"), contactData.getMail3());
   }
+
+  public void selectContact() {
+    click(By.name("selected[]"));
+  }
+
+  public void deleteSelectedContacts() {
+    click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
+
+  }
 }
