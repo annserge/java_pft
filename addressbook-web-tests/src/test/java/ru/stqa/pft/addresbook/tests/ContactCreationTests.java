@@ -16,9 +16,8 @@ public class ContactCreationTests extends TestBase {
   public void testContactCreation() {
 
     app.getNavigationHelper().gotoAddNewPage();
-   /* app.getGroupHelper().fillContactForm(new ContactData("Anna", "Sergeeva", "My address is somewhere", "(h)1234567", "(m)1234567", "(w)1234567", "anna.sergeeva@server.com", "mail2", "mail3"));
-    app.getGroupHelper().submitContactCreation();
-    app.getGroupHelper().returnToHomePage();
-  */}
-
+//    app.getContacHelper().fillContactForm(new ContactData("Anna", "Sergeeva", "My address is somewhere", "(h)1234567", "(m)1234567", "(w)1234567", "anna.sergeeva@server.com", "mail2", "mail3"));
+//    app.getContacHelper().submitContactCreation();
+    app.getNavigationHelper().returnToHomePage();
+  }
 }
