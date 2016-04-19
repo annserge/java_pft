@@ -1,7 +1,6 @@
 package ru.stqa.pft.addresbook.tests;
 
 import org.testng.annotations.Test;
-import ru.stqa.pft.addresbook.model.ContactData;
 
 /**
  * Created by Anna on 19.04.2016.

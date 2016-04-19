@@ -13,6 +13,7 @@ public class ContactHelper extends HelperBase {
     super(wd);
   }
 
+  //enter button (submit new contact)
   public void submitContactCreation() {
     click(By.xpath("//div[@id='content']/form/input[21]"));
   }
@@ -33,8 +34,17 @@ public class ContactHelper extends HelperBase {
     click(By.name("selected[]"));
   }
 
+  //delete button
   public void deleteSelectedContacts() {
     click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
+  }
 
+  //pencil image
+  public void editSelectedContact() {
+    click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
+  }
+
+  public void submitContactUpdate() {
+    click(By.name("update"));
   }
 }
