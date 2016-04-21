@@ -11,21 +11,33 @@ public class Equation {
 
   private int n;
 
-  public Equation (double a, double b, double c) {
+  public Equation(double a, double b, double c) {
     this.a = a;
     this.b = b;
     this.c = c;
 
-    double d = b*b - 4*a*c;
+    double d = b * b - 4 * a * c;
 
-    if (d > 0) {
-      n = 2;
-    } else {
-      if (d == 0) {
+    if (a != 0) {
+      if (d > 0) {
+        n = 2;
+      } else if (d == 0) {
         n = 1;
       } else {
         n = 0;
       }
+
+    } else if (b != 0) {
+      n = 1;
+      System.out.println("Это вырожденное уравнение");
+
+    } else if (c != 0) {
+      n = 0;
+      System.out.println("Это дважды вырожденное уравнение");
+
+    } else {
+      n = -1;
+      System.out.println("Бесконечное множество решений");
     }
   }
 
