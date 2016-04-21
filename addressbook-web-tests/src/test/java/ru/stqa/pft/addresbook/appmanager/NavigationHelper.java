@@ -1,13 +1,14 @@
 package ru.stqa.pft.addresbook.appmanager;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 /**
  * Created by Anna on 18.04.2016.
  */
 public class NavigationHelper extends HelperBase {
-  public NavigationHelper(FirefoxDriver wd) {
+  public NavigationHelper(WebDriver wd) {
     super(wd);
   }
 
