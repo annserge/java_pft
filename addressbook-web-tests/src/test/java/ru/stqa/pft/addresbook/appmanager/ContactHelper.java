@@ -34,7 +34,10 @@ public class ContactHelper extends HelperBase {
     type(By.name("email3"), contactData.getMail3());
 
     if (creation) {
-      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+      //выбор элемента из списка
+      //new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+      //"заглушка" против отсутствия групп в базе при создании контактов:
+      Assert.assertTrue(isElementPresent(By.name("new_group")));
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
@@ -57,5 +60,14 @@ public class ContactHelper extends HelperBase {
 
   public void submitContactUpdate() {
     click(By.name("update"));
+  }
+
+  public void createContact(ContactData contact, boolean create) {
+    fillContactForm(contact, create);
+    submitContactCreation();
+  }
+
+  public boolean isThereAContact() {
+    return isElementPresent(By.name("selected[]"));
   }
 }
