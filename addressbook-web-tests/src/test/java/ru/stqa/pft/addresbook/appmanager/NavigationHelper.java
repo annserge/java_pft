@@ -24,8 +24,11 @@ public class NavigationHelper extends HelperBase {
 
   public void gotoAddNewPage() {
     if (isElementPresent(By.tagName("h1"))
-            && wd.findElement(By.tagName("h1")).getText().equals("Edit / add address book entry")) {return;}
+            && wd.findElement(By.tagName("h1")).getText().equals("Edit / add address book entry")
+            && isElementPresent(By.name("submit"))) {return;}
     click(By.linkText("add new"));
+    //переход по линку add new(contact), только пока не: найден заголовок с тегом h1 и именем "Edit / add address book entry"
+    //плюс кнопка создания контакта с именем submit
   }
 
   public void returnToHomePage() {
