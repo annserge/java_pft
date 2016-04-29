@@ -1,5 +1,6 @@
 package ru.stqa.pft.addresbook.tests;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addresbook.model.GroupData;
 
@@ -11,6 +12,7 @@ public class GroupModificationTests extends TestBase {
   @Test
   public void testGroupModification () {
     app.getNavigationHelper().gotoGroupPage();
+    int before = app.getGroupHelper().getGroupCount();
 
     //если нет группы, то создать ее
     if (! app.getGroupHelper().isThereAGroup()) {
@@ -21,5 +23,7 @@ public class GroupModificationTests extends TestBase {
     app.getGroupHelper().fillGroupForm(new GroupData("test1", "test2", "test3"));
     app.getGroupHelper().submitGroupModification();
     app.getGroupHelper().returnToGroupPage();
+    int after = app.getGroupHelper().getGroupCount();
+    Assert.assertEquals(after, before);
   }
 }
