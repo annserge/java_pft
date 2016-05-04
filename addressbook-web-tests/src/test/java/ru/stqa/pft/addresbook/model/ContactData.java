@@ -28,7 +28,7 @@ public class ContactData {
   }
 
   public ContactData(String firstName, String lastName, String address, String homePh, String mobPh, String workPh, String mail1, String mail2, String mail3, String group ) {
-    this.id = Integer.MAX_VALUE;
+    this.id = 0;
     this.firstName = firstName;
     this.lastName = lastName;
     this.address = address;
@@ -84,6 +84,10 @@ public class ContactData {
 
   public String getGroup() {
     return group;
+  }
+
+  public void setId(int id) {
+    this.id = id;
   }
 
   @Override
