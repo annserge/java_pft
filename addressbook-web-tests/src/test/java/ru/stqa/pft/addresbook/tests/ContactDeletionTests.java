@@ -20,7 +20,7 @@ public class ContactDeletionTests extends TestBase {
       app.getContactHelper().createContact(new ContactData("Anna", null, null, null, null, null, null, null, null, null));
       app.getNavigationHelper().returnToHomePage();
     }
-    app.getContactHelper().selectContact();
+    app.getContactHelper().selectContact(before - 1);
     app.getContactHelper().deleteSelectedContacts();
     app.getNavigationHelper().confirmAlert();
     app.getNavigationHelper().returnToHomePage();

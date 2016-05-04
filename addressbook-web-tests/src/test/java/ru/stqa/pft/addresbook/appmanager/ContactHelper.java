@@ -44,8 +44,8 @@ public class ContactHelper extends HelperBase {
   }
 
 
-  public void selectContact() {
-    click(By.name("selected[]"));
+  public void selectContact(int index) {
+    wd.findElements(By.name("selected[]")).get(index).click();
   }
 
   //delete button
@@ -54,8 +54,10 @@ public class ContactHelper extends HelperBase {
   }
 
   //pencil image
-  public void editSelectedContact() {
-    click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
+  public void editSelectedContact(int index) {
+    String currXpath="//table[@id='maintable']/tbody/tr[" + (index+2) +"]/td[8]/a/img";
+    wd.findElement(By.xpath(currXpath)).click();
+    //click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
   }
 
   public void submitContactUpdate() {
