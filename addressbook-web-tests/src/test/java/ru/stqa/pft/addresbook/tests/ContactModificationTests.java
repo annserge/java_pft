@@ -19,7 +19,7 @@ public class ContactModificationTests extends TestBase {
     //если нет контакта, то создать его
     if (app.contact().list().size() == 0) {
       app.goTo().addNewPage();
-      app.contact().create(new ContactData("Anna", null, null, null, null, null, null, null, null, null));
+      app.contact().create(new ContactData().withFirstName("Anna"));
       app.goTo().homePage();
     }
   }
@@ -28,9 +28,11 @@ public class ContactModificationTests extends TestBase {
   public void testContactModificaion() {
     List<ContactData> before = app.contact().list();
     int index = before.size() - 1;
-    //null - потому что при модификции контакта поле group не доступно для заполнения, значит, оставляем его без изменений:
-    ContactData contact = new ContactData(before.get(index).getId(), "Anna", "Sergeeva", "My address is somewhere", "(h)1234567", "(m)1234567", "(w)1234567", "anna.sergeeva@server.com", "mail2", "mail3", null);
-
+    //group=null - потому что при модификции контакта поле group не доступно для заполнения, значит, оставляем его без изменений:
+    ContactData contact = new ContactData()
+            .withId(before.get(index).getId()).withFirstName("Anna").withLastName("Sergeeva")
+            .withAddress("My address is somewhere").withHomePh("(h)1234567").withMobPh("(m)1234567").withWorkPh("(w)1234567")
+            .withMail1("anna.sergeeva@server.com").withMail2("mail2").withMail3("mail3");
     app.contact().modify(index, contact);
     app.goTo().homePage();
 
