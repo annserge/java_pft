@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class ContactModificationTests extends TestBase {
 
-  @Test
+  @Test(enabled = false)
   public void testContactModificaion() {
     app.getNavigationHelper().returnToHomePage();
     //если нет контакта, то создать его
