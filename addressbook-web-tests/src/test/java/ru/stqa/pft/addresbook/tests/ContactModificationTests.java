@@ -1,11 +1,13 @@
 package ru.stqa.pft.addresbook.tests;
 
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addresbook.model.ContactData;
+import ru.stqa.pft.addresbook.model.Contacts;
 
-import java.util.Set;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.testng.Assert.assertEquals;
 
 /**
  * Created by Anna on 19.04.2016.
@@ -25,7 +27,7 @@ public class ContactModificationTests extends TestBase {
 
   @Test//(enabled = false)
   public void testContactModificaion() {
-    Set<ContactData> before = app.contact().all();
+    Contacts before = app.contact().all();
     //выбор случайного контакта для модификции:
     ContactData modifiedContact = before.iterator().next();
     //group=null - потому что при модификции контакта поле group не доступно для заполнения, значит, оставляем его без изменений:
@@ -36,12 +38,8 @@ public class ContactModificationTests extends TestBase {
     app.contact().modify(contact);
     app.goTo().homePage();
 
-    Set<ContactData> after = app.contact().all();
-    Assert.assertEquals(after.size(), before.size());
-
-    before.remove(modifiedContact);
-    before.add(contact);
-    Assert.assertEquals(before, after);
+    Contacts after = app.contact().all();
+    assertEquals(after.size(), before.size());
+    assertThat(after, equalTo(before.without(modifiedContact).withAdded(contact)));
   }
-
 }

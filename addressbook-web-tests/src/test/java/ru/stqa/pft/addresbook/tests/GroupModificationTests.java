@@ -23,7 +23,7 @@ public class GroupModificationTests extends TestBase {
     }
   }
 
-  @Test(enabled = false)
+  @Test//(enabled = false)
   public void testGroupModification () {
     Groups before = app.group().all();
     //выбор случайной группы для модификации:
@@ -35,5 +35,4 @@ public class GroupModificationTests extends TestBase {
     assertEquals(after.size(), before.size());
     assertThat(after, CoreMatchers.equalTo(before.without(modifiedGroup).withAdded(group)));
   }
-
 }
