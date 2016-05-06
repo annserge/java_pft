@@ -22,7 +22,7 @@ public class NavigationHelper extends HelperBase {
     //переход по линку groups, только пока не: найден заголовок с тегом h1 и именем Groups плюс кнопка создания группы с имененм new
   }
 
-  public void gotoAddNewPage() {
+  public void addNewPage() {
     if (isElementPresent(By.tagName("h1"))
             && wd.findElement(By.tagName("h1")).getText().equals("Edit / add address book entry")
             && isElementPresent(By.name("submit"))) {return;}
@@ -37,4 +37,10 @@ public class NavigationHelper extends HelperBase {
     }
     click(By.linkText("home"));
   }
+
+  public void confirmAndHome() {
+    confirmAlert();
+    homePage();
+  }
+
 }

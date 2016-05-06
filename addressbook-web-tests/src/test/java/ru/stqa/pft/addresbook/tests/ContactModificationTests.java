@@ -4,7 +4,6 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addresbook.model.ContactData;
-import ru.stqa.pft.addresbook.model.GroupData;
 
 import java.util.Comparator;
 import java.util.List;
@@ -18,24 +17,24 @@ public class ContactModificationTests extends TestBase {
   public void ensurePreconditions() {
     app.goTo().homePage();
     //если нет контакта, то создать его
-    if (! app.getContactHelper().isThereAContact()) {
-      app.goTo().gotoAddNewPage();
-      app.getContactHelper().createContact(new ContactData("Anna", null, null, null, null, null, null, null, null, null));
+    if (app.contact().list().size() == 0) {
+      app.goTo().addNewPage();
+      app.contact().create(new ContactData("Anna", null, null, null, null, null, null, null, null, null));
       app.goTo().homePage();
     }
   }
 
   @Test//(enabled = false)
   public void testContactModificaion() {
-    List<ContactData> before = app.getContactHelper().getContactList();
+    List<ContactData> before = app.contact().list();
     int index = before.size() - 1;
     //null - потому что при модификции контакта поле group не доступно для заполнения, значит, оставляем его без изменений:
     ContactData contact = new ContactData(before.get(index).getId(), "Anna", "Sergeeva", "My address is somewhere", "(h)1234567", "(m)1234567", "(w)1234567", "anna.sergeeva@server.com", "mail2", "mail3", null);
 
-    app.getContactHelper().modifyContact(index, contact);
+    app.contact().modify(index, contact);
     app.goTo().homePage();
 
-    List<ContactData> after = app.getContactHelper().getContactList();
+    List<ContactData> after = app.contact().list();
     Assert.assertEquals(after.size(), before.size());
 
     before.remove(index);
