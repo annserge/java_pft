@@ -48,6 +48,11 @@ public class ContactHelper extends HelperBase {
     }
   }
 
+  public void modifyContact(int index, ContactData contact) {
+    editSelectedContact(index);
+    fillContactForm(contact, false);
+    submitContactUpdate();
+  }
 
   public void selectContact(int index) {
     wd.findElements(By.name("selected[]")).get(index).click();

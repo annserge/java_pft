@@ -31,7 +31,7 @@ public class NavigationHelper extends HelperBase {
     //плюс кнопка создания контакта с именем submit
   }
 
-  public void returnToHomePage() {
+  public void homePage() {
     if (isElementPresent(By.id("maintable"))) {
       return;
     }
