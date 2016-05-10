@@ -50,6 +50,7 @@ public class ContactHelper extends HelperBase {
     editSelectedContactById(contact.getId());
     fillContactForm(contact, false);
     submitContactUpdate();
+    contactCache = null;
   }
 
   public void selectContact(int index) {
@@ -86,11 +87,13 @@ public class ContactHelper extends HelperBase {
   public void create(ContactData contact) {
     fillContactForm(contact, true);
     submitContactCreation();
+    contactCache = null;
   }
 
   public void delete(ContactData contact) {
     selectContactById(contact.getId());
     deleteSelectedContacts();
+    contactCache = null;
   }
 
   public boolean isThereAContact() {
@@ -101,15 +104,23 @@ public class ContactHelper extends HelperBase {
     return wd.findElements(By.name("selected[]")).size();
   }
 
+  private Contacts contactCache = null;
+
   public Contacts all() {
-    Contacts contacts = new Contacts();
+    if (contactCache != null) {
+      //возвр копию на всякий случай, чтобы кто-нибудь не испортил кэш:
+      return new Contacts(contactCache);
+    }
+
+    contactCache = new Contacts();
     List<WebElement> elements = wd.findElements(By.name("entry"));
     for (WebElement element : elements) {
       String lastName  = element.findElement(By.xpath(".//td[2]")).getText();
       String firstName = element.findElement(By.xpath(".//td[3]")).getText();
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      contacts.add(new ContactData().withId(id).withFirstName(firstName).withLastName(lastName));
+      contactCache.add(new ContactData().withId(id).withFirstName(firstName).withLastName(lastName));
     }
-    return contacts;
+    //тоже возвр копию
+    return new Contacts(contactCache);
   }
 }
