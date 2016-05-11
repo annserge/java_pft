@@ -4,6 +4,9 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addresbook.model.ContactData;
 
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+
 /**
  * Created by Anna on 11.05.2016.
  */
@@ -25,5 +28,13 @@ public class ContactPhoneTests extends TestBase {
     app.goTo().homePage();
     ContactData contact = app.contact().all().iterator().next();
     ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
+
+    assertThat(contact.getHomePh(), equalTo(cleaned(contactInfoFromEditForm.getHomePh())));
+    assertThat(contact.getMobPh(),  equalTo(cleaned(contactInfoFromEditForm.getMobPh())));
+    assertThat(contact.getWorkPh(), equalTo(cleaned(contactInfoFromEditForm.getWorkPh())));
+  }
+
+  public String cleaned(String phone) {
+    return phone.replaceAll("\\s", "").replaceAll("[-()]", "");
   }
 }
