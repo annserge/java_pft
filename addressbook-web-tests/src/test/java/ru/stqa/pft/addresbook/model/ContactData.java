@@ -12,6 +12,7 @@ public class ContactData {
   private String mail1;
   private String mail2;
   private String mail3;
+  private String allMails;
   private String group;
 
   public int getId() {
@@ -64,6 +65,15 @@ public class ContactData {
 
   public ContactData withAllPhones(String allPhones) {
     this.allPhones = allPhones;
+    return this;
+  }
+
+  public String getAllMails() {
+    return allMails;
+  }
+
+  public ContactData withAllMails(String allMails) {
+    this.allMails = allMails;
     return this;
   }
 

@@ -32,7 +32,7 @@ public class ContactModificationTests extends TestBase {
     //group=null - потому что при модификции контакта поле group не доступно для заполнения, значит, оставляем его без изменений:
     ContactData contact = new ContactData()
             .withId(modifiedContact.getId()).withFirstName("Anna").withLastName("Sergeeva")
-            .withAddress("My address is somewhere").withHomePh("(h)1234567").withMobPh("m-1234567").withWorkPh("w 1234567")
+            .withAddress("My address is somewhere\n\nhere").withHomePh("(h)1234567").withMobPh("m-1234567").withWorkPh("w 1234567")
             .withMail1("anna.sergeeva@server.com").withMail2("mail2").withMail3("mail3");
     app.contact().modify(contact);
     app.goTo().homePage();

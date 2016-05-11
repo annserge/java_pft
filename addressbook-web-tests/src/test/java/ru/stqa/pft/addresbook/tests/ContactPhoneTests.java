@@ -21,7 +21,7 @@ public class ContactPhoneTests extends TestBase {
     //если нет контакта, то создать его
     if (app.contact().all().size() == 0) {
       app.goTo().addNewPage();
-      app.contact().create(new ContactData().withFirstName("Anna").withHomePh("111").withMobPh("222").withWorkPh("333"));
+      app.contact().create(new ContactData().withFirstName("Anna").withHomePh("+7(123)45-67").withMobPh("").withWorkPh("123 45 97").withAddress("This\nis my\n\naddress").withMail2("anna@sergeeva.com").withMail3("test mail"));
       app.goTo().homePage();
     }
   }
@@ -33,12 +33,20 @@ public class ContactPhoneTests extends TestBase {
     ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
 
     assertThat(contact.getAllPhones(), equalTo(mergePhones(contactInfoFromEditForm)));
+    assertThat(contact.getAddress(),   equalTo(contactInfoFromEditForm.getAddress()));
+    assertThat(contact.getAllMails(),  equalTo(mergeMails(contactInfoFromEditForm)));
   }
 
   private String mergePhones(ContactData contact) {
     return Arrays.asList(contact.getHomePh(), contact.getMobPh(), contact.getWorkPh())
             .stream().filter((s) -> ! s.equals(""))
             .map(ContactPhoneTests::cleaned)
+            .collect(Collectors.joining("\n"));
+  }
+
+  private String mergeMails(ContactData contact) {
+    return Arrays.asList(contact.getMail1(), contact.getMail2(), contact.getMail3())
+            .stream().filter((s) -> ! s.equals(""))
             .collect(Collectors.joining("\n"));
   }
 
