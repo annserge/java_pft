@@ -7,9 +7,7 @@ import org.testng.Assert;
 import ru.stqa.pft.addresbook.model.ContactData;
 import ru.stqa.pft.addresbook.model.Contacts;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by Anna on 19.04.2016.
@@ -119,8 +117,8 @@ public class ContactHelper extends HelperBase {
       int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value"));
       String lastName  = cells.get(1).getText();
       String firstName = cells.get(2).getText();
-      String[] phones = cells.get(5).getText().split("\n");
-      contactCache.add(new ContactData().withId(id).withFirstName(firstName).withLastName(lastName).withHomePh(phones[0]).withMobPh(phones[1]).withWorkPh(phones[2]));
+      String allPhones = cells.get(5).getText();
+      contactCache.add(new ContactData().withId(id).withFirstName(firstName).withLastName(lastName).withAllPhones(allPhones));
     }
     //тоже возвр копию
     return new Contacts(contactCache);
