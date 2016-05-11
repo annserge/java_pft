@@ -158,4 +158,16 @@ public class ContactHelper extends HelperBase {
 //    wd.findElement(By.xpath(String.format("//tr[.//input[@value='%s']]/td[8]/a", id))).click();
     wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']", id))).click();
   }
+
+  private void initContactViewById(int id) {
+    wd.findElement(By.cssSelector(String.format("a[href='view.php?id=%s']", id))).click();
+  }
+
+  public String infoFromDetailsPage(ContactData contact) {
+    initContactViewById(contact.getId());
+    String contactContent = wd.findElement(By.id("content")).getText();
+    wd.navigate().back();
+    return contactContent;
+  }
+
 }
