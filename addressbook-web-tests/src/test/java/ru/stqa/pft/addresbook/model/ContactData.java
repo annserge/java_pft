@@ -56,6 +56,7 @@ public class ContactData {
   @Transient
   private String group;
   @Column(name="photo")
+  //@Type(type = "mediumtext")
   @Type(type = "text")
   private String photo;
 

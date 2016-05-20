@@ -15,9 +15,8 @@ public class ContactModificationTests extends TestBase {
 
   @BeforeMethod
   public void ensurePreconditions() {
-    app.goTo().homePage();
-    //если нет контакта, то создать его
-    if (app.contact().all().size() == 0) {
+    if (app.db().contacts().size() == 0) {
+      //если нет контакта, то создать его
       app.goTo().addNewPage();
       app.contact().create(new ContactData().withFirstName("Anna"));
       app.goTo().homePage();
@@ -26,7 +25,7 @@ public class ContactModificationTests extends TestBase {
 
   @Test//(enabled = false)
   public void testContactModificaion() {
-    Contacts before = app.contact().all();
+    Contacts before = app.db().contacts();
     //выбор случайного контакта для модификции:
     ContactData modifiedContact = before.iterator().next();
     //group=null - потому что при модификции контакта поле group не доступно для заполнения, значит, оставляем его без изменений:
@@ -38,7 +37,7 @@ public class ContactModificationTests extends TestBase {
     app.goTo().homePage();
 
     assertThat(app.contact().count(), equalTo(before.size()));
-    Contacts after = app.contact().all();
+    Contacts after = app.db().contacts();
     assertThat(after, equalTo(before.without(modifiedContact).withAdded(contact)));
   }
 }

@@ -17,9 +17,8 @@ public class ContactDetailsTests extends TestBase{
 
   @BeforeMethod
   public void ensurePreconditions() {
-    app.goTo().homePage();
-    //если нет контакта, то создать его
-    if (app.contact().all().size() == 0) {
+    if (app.db().contacts().size() == 0) {
+      //если нет контакта, то создать его
       app.goTo().addNewPage();
       app.contact().create(new ContactData().withFirstName("Anna").withLastName("Sergeeva").withHomePh("+7(123)45-67").withMobPh("").withWorkPh("123 45 97").withAddress("This\nis my\n\naddress").withMail2("anna@sergeeva.com").withMail3("test mail"));
       app.goTo().homePage();
