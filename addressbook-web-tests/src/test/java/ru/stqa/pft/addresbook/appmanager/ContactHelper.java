@@ -33,7 +33,7 @@ public class ContactHelper extends HelperBase {
     type(By.name("email"), contactData.getMail1());
     type(By.name("email2"), contactData.getMail2());
     type(By.name("email3"), contactData.getMail3());
-    attach(By.name("photo"), contactData.getPhoto());
+    //attach(By.name("photo"), contactData.getPhoto()); заглушка для модуля 7-4, когда не понятно, в каком формате хибернейт хранит файлы
 
     if (creation) {
       //выбор элемента из списка

@@ -55,9 +55,10 @@ public class ContactData {
   private String allMails;
   @Transient
   private String group;
-  @Column(name="photo")
+  @Transient
+  //@Column(name="photo")
   //@Type(type = "mediumtext")
-  @Type(type = "text")
+  //@Type(type = "text")
   private String photo;
 
   public int getId() {
