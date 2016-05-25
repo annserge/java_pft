@@ -3,9 +3,11 @@ package ru.stqa.pft.addresbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addresbook.model.ContactData;
 import ru.stqa.pft.addresbook.model.Contacts;
+import ru.stqa.pft.addresbook.model.GroupData;
 
 import java.util.List;
 
@@ -171,4 +173,29 @@ public class ContactHelper extends HelperBase {
     return contactContent;
   }
 
+  public void selectRelatedGroup(GroupData relatedGroup) {
+    new Select(wd.findElement(By.xpath("//select[@name='to_group']"))).selectByVisibleText(relatedGroup.getName());
+  }
+
+  public void submitAddToGroup() {
+    wd.findElement(By.name("add")).click();
+
+  }
+
+  public void submitRemoveFromGroup() {
+    wd.findElement(By.name("remove")).click();
+  }
+
+  public void filterByGroup(GroupData relatedGroup) {
+    new Select(wd.findElement(By.xpath("//select[@name='group']"))).selectByVisibleText(relatedGroup.getName());
+  }
+
+  public boolean isContactInGroup(ContactData modifiedContact, GroupData relatedGroup) {
+    boolean passed = false;
+    for (GroupData group : modifiedContact.getGroups()) {
+      if ((group.getName()).equals(relatedGroup.getName()))
+      {passed = true; break;}
+    }
+    return passed;
+  }
 }
