@@ -193,9 +193,12 @@ public class ContactHelper extends HelperBase {
   public boolean isContactInGroup(ContactData modifiedContact, GroupData relatedGroup) {
     boolean passed = false;
     for (GroupData group : modifiedContact.getGroups()) {
+
+      System.out.println((group.getName() + " - related:" +relatedGroup.getName()));
       if ((group.getName()).equals(relatedGroup.getName()))
-      {passed = true; break;}
+      {passed = true;}
     }
     return passed;
   }
+
 }

@@ -42,8 +42,17 @@ public class ContactRemoveFromGroupTests extends TestBase {
     GroupData relatedGroup = groups.iterator().next();
 
     if (! (app.contact().isContactInGroup(modifiedContact, relatedGroup))) {
-  //если нет привязки между контактом и группой - создать ее:
-      modifiedContact.inGroup(relatedGroup);
+    //если нет привязки между контактом и группой - создать ее:
+      app.goTo().homePage();
+      app.contact().selectContactById(modifiedContact.getId());
+      app.contact().selectRelatedGroup(relatedGroup);
+      app.contact().submitAddToGroup();
+
+      contacts = app.db().contacts();
+      for (ContactData contact : contacts) {
+        if (contact.getId() == modifiedContact.getId()) {modifiedContact = contact;break;}
+      }
+      assertThat(app.contact().isContactInGroup(modifiedContact, relatedGroup), equalTo(true));
     }
 
     app.goTo().homePage();
@@ -51,7 +60,11 @@ public class ContactRemoveFromGroupTests extends TestBase {
     app.contact().selectContactById(modifiedContact.getId());
     app.contact().submitRemoveFromGroup();
     app.goTo().homePage();
-
+    contacts = app.db().contacts();
+    for (ContactData contact : contacts) {
+      if (contact.getId() == modifiedContact.getId()) {modifiedContact = contact;break;}
+    }
     assertThat(app.contact().isContactInGroup(modifiedContact, relatedGroup), equalTo(false));
   }
+
 }

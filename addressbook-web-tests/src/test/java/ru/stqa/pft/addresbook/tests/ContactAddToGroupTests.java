@@ -47,6 +47,11 @@ public class ContactAddToGroupTests extends TestBase {
     app.contact().submitAddToGroup();
     app.goTo().homePage();
 
+
+    contacts = app.db().contacts();
+    for (ContactData contact : contacts) {
+      if (contact.getId() == modifiedContact.getId()) {modifiedContact = contact;break;}
+    }
     assertThat(app.contact().isContactInGroup(modifiedContact, relatedGroup), equalTo(true));
   }
 }
