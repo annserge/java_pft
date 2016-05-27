@@ -13,6 +13,7 @@ import java.util.Objects;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
+
 /**
  * Created by Anna on 18.04.2016.
  */
@@ -48,4 +49,11 @@ public class ApplicationManager {
     wd.quit();
   }
 
+  public HttpSession newSession() {
+    return new HttpSession(this);
+  }
+
+  public String getProperty(String key) {
+    return properties.getProperty(key);
+  }
 }
