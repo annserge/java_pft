@@ -39,7 +39,6 @@ public class ApplicationManager {
     String target = System.getProperty("target", "local");
     properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
 
-    dbHelper = new DbHelper();
   }
 
   public void stop() {
@@ -74,13 +73,11 @@ public class ApplicationManager {
   }
 
   public DbHelper db() {
+    if (dbHelper == null) {
+      dbHelper = new DbHelper();
+    }
     return dbHelper;
   }
-/*
-  public DbHelper db() {
-    //return new DbHelper(this);
-    return new DbHelper();//????
-  }*/
 
   public WebDriver getDriver() {
     //"ленивая" инициализация, то есть, только при необходимости:

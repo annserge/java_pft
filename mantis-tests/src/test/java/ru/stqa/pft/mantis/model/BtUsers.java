@@ -11,26 +11,14 @@ import java.util.Set;
  */
 
 public class BtUsers extends ForwardingSet<BtUserData> {
-
   private Set<BtUserData> delegate;
 
-  public BtUsers(BtUsers btUsers) {
-    //такой конструктор создает копию объекта, можно работать с объектом до и после изменения:
-    this.delegate = new HashSet<BtUserData>(btUsers.delegate);
-  }
-
-  public BtUsers() {
-    this.delegate = new HashSet<BtUserData>();
+  public BtUsers(Collection<BtUserData> users) {
+    this.delegate = new HashSet<BtUserData>(users);
   }
 
   @Override
   protected Set<BtUserData> delegate() {
-    return null;
+    return delegate;
   }
-
-  public BtUsers(Collection<BtUserData> btUsers) {
-    //такой конструктор создает копию объекта, можно работать с объектом до и после изменения:
-    this.delegate = new HashSet<BtUserData>(btUsers);
-  }
-
 }

@@ -4,12 +4,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.util.Arrays;
 
 /**
  * Created by Anna on 30.05.2016.
  */
-
 
 @Entity
 @Table(name = "mantis_user_table")
@@ -19,12 +17,16 @@ public class BtUserData {
   private int id;
   @Column(name = "username")
   private String username;
-  //private String email;
-
-  //private BtUsers
+  @Column(name = "email")
+  private String email;
 
   public BtUserData withId(int id) {
     this.id = id;
+    return this;
+  }
+
+  public BtUserData withEmail(String email) {
+    this.email = email;
     return this;
   }
 
@@ -35,5 +37,9 @@ public class BtUserData {
 
   public String getName() {
     return username;
+  }
+
+  public String getEmail() {
+    return email;
   }
 }
