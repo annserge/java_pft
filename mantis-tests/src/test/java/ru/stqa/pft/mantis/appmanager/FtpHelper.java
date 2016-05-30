@@ -35,7 +35,7 @@ public class FtpHelper {
   public void restore(String backup, String target) throws IOException {
     ftp.connect(app.getProperty("ftp.host"));
     ftp.login(app.getProperty("ftp.login"), app.getProperty("ftp.password"));
-    ftp.deleteFile(backup);
+    ftp.deleteFile(target);
     ftp.rename(backup, target);
     ftp.disconnect();
   }
