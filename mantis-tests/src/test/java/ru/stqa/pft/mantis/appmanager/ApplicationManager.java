@@ -25,8 +25,10 @@ public class ApplicationManager {
 
   private String browser;
   private RegistrationHelper registrationHelper;
+  private DbHelper dbHelper;
   private FtpHelper ftp;
   private MailHelper mailHelper;
+  private UserHelper loginHelper;
 
   public ApplicationManager(String browser){
     this.browser = browser;
@@ -36,6 +38,8 @@ public class ApplicationManager {
   public void init() throws IOException {
     String target = System.getProperty("target", "local");
     properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
+
+    dbHelper = new DbHelper();
   }
 
   public void stop() {
@@ -69,6 +73,15 @@ public class ApplicationManager {
     return ftp;
   }
 
+  public DbHelper db() {
+    return dbHelper;
+  }
+/*
+  public DbHelper db() {
+    //return new DbHelper(this);
+    return new DbHelper();//????
+  }*/
+
   public WebDriver getDriver() {
     //"ленивая" инициализация, то есть, только при необходимости:
     if (wd == null) {
@@ -93,5 +106,12 @@ public class ApplicationManager {
     return mailHelper;
   }
 
+  public UserHelper user() {
+    //"ленивая" инициализация, то есть, только при необходимости:
+    if (loginHelper == null) {
+      loginHelper = new UserHelper(this);
+    }
+    return loginHelper;
+  }
 
 }

@@ -26,7 +26,8 @@ public class RegistrationTests extends TestBase {
   @Test
   public void testRegistration() throws IOException, MessagingException {
     long now = System.currentTimeMillis();
-    String user = String.format("user%s", now);
+    //String user = String.format("user%s", now);
+    String user = "Anna";
     String password = "password";
     String email = String.format("user%s@localhost.localdomain", now);
     app.registration().start(user, email);
