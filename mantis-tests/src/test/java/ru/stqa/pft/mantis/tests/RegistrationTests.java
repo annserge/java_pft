@@ -17,7 +17,8 @@ import static org.testng.Assert.assertTrue;
  */
 public class RegistrationTests extends TestBase {
 
-  @BeforeMethod
+  //когда использую встроенный мейл-сервер:
+  //@BeforeMethod
   public void startMailServer() {
     app.mail().start();
   }
@@ -28,9 +29,15 @@ public class RegistrationTests extends TestBase {
     String user = String.format("user%s", now);
     //String user = "Anna";
     String password = "password";
-    String email = String.format("user%s@localhost.localdomain", now);
+    //String email = String.format("user%s@localhost.localdomain", now);
+    String email = String.format("user%s@localhost", now);
+    app.james().createUser(user, password);
     app.registration().start(user, email);
-    List<MailMessage> mailMessages = app.mail().waitForMail(2, 10000);
+
+    //когда использую встроенный мейл-сервер:
+    //List<MailMessage> mailMessages = app.mail().waitForMail(2, 10000);
+    //а вот так - для внешнего мейл-сервера:
+    List<MailMessage> mailMessages = app.james().waitForMail(user, password, 120000);
     String confirmationLink = findConfirmationLink(mailMessages, email);
     app.registration().finish(confirmationLink, password);
     assertTrue(app.newSession().login(user, password));
@@ -42,7 +49,8 @@ public class RegistrationTests extends TestBase {
     return regex.getText(mailMessage.text);
   }
 
-  @AfterMethod(alwaysRun = true)
+  //когда использую встроенный мейл-сервер:
+  //@AfterMethod(alwaysRun = true)
   public void stopMailServer() {
     app.mail().stop();
   }
