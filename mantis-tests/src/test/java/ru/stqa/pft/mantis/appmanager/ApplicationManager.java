@@ -30,6 +30,7 @@ public class ApplicationManager {
   private MailHelper mailHelper;
   private UserHelper loginHelper;
   private JamesHelper jamesHelper;
+  private SoapHelper soapHelper;
 
   public ApplicationManager(String browser){
     this.browser = browser;
@@ -39,7 +40,6 @@ public class ApplicationManager {
   public void init() throws IOException {
     String target = System.getProperty("target", "local");
     properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
-
   }
 
   public void stop() {
@@ -118,5 +118,13 @@ public class ApplicationManager {
       jamesHelper = new JamesHelper(this);
     }
     return jamesHelper;
+  }
+
+  public SoapHelper soap() {
+    //"ленивая" инициализация, то есть, только при необходимости:
+    if (soapHelper == null) {
+      soapHelper = new SoapHelper(this);
+    }
+    return soapHelper;
   }
 }
