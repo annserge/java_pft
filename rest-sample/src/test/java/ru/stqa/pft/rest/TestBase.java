@@ -51,22 +51,3 @@ public class TestBase {
     }
   }
 }
-/*
-"state_name" -> ""Closed""
-
-{"assignee_id":0,"category_id":1,"created":"2016-06-03T06:00:04+00:00",
-"creator":{"id":"1","created":"2016-06-03T06:00:04+00:00","updated":"2016-06-03T06:00:04+00:00",
-"firstname":"Demo","lastname":"User","name":"Demo User","email":"demo@bugify.com",
-"username":"demo",
-"notifications":{"creator":true,"assignee":true,"following":true,"commented":true,"mychange":true,
-"mentioned":true,"allcreates":true},"groups":[],"settings":[],"owner":true,"timezone":"UTC","state":1,
-"api_key":"LSGjeU4yP1X493ud1hNniA=="},"creator_id":1,"description":"Sample issue description","id":1,
-"labels":[],"milestone":{"id":"1","created":"2016-06-03T06:00:04+00:00",
-"updated":"2016-06-03T06:00:04+00:00","archived":"","due":"2016-08-02T06:00:04+00:00",
-"days_remaining":60,"name":"Blackbird v1","description":"","state":"1"},"milestone_id":1,
-"percentage":0,"priority":"1","priority_name":"Normal","project":{"id":"1",
-"created":"2016-06-03T06:00:03+00:00","updated":"2016-06-03T06:00:03+00:00","name":"Blackbird",
-"slug":"blackbird","categories":[],"description":"","state":"1"},"project_id":1,"related_issue_ids":[2],
-"resolved":"1970-01-01T00:00:00+00:00","state":"0","state_name":"Open","subject":"Sample issue 1",
-"updated":"2016-06-03T06:04:56+00:00"}
- */
